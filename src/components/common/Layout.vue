@@ -16,7 +16,7 @@
           <div class="rigth-btns">
             <el-dropdown size="medium" trigger="click">
               <div class="pull-left image">
-                <img src="../assets/images/trump.jpg" class="img-circle" alt="User Image" style="margin-right:5px;">
+                <img src="../../assets/images/trump.jpg" class="img-circle" alt="User Image" style="margin-right:5px;">
                 <span class="el-dropdown-link">
                   {{ currentUser.userInfo.userName }}
                 </span>
@@ -29,13 +29,12 @@
             </el-dropdown>
           </div>
         </nav>
-        
       </el-header>
       <el-container>
         <el-aside>
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="../assets/images/trump.jpg" class="img-circle" alt="User Image">
+              <img src="../../assets/images/trump.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
               <p>{{ currentUser.userInfo.userName }}</p>
@@ -44,34 +43,26 @@
           </div>
           <div class="nav">
             <div class="header">主菜单</div>
-
             <!-- 菜单 -->
-            <Nav :isCollapse="isCollapse"></Nav>
-            
+            <!-- <Nav :isCollapse="isCollapse"></Nav> -->
           </div>
 
         </el-aside>
         <el-container>
           <el-main>
             <!-- 面包屑导航 -->
-            
-            <div class="el-breadcrumb" style="margin-bottom: 20px; text-align: left;">
-              <template v-for="(item, index) in matchedItems" :data-path="item.path"  :to="item.path">
-                <router-link v-if="(matchedItems.length -1 ) != index" class="breadcrumb-link" :to="{ path: item.path }">{{item.meta.label}}</router-link>
-                <span v-if="(matchedItems.length -1 ) != index" style="margin: 0 9px; font-weight: 700; color: #c0c4cc;">/</span>
-                <span v-else style="    font-weight: 400; color: #606266; cursor: text;">{{item.meta.label}}</span>
-                <!-- <a @click="gotoPage(item)">{{item.meta.label}}</a> -->
-              </template>
-            </div>
-
+              <el-breadcrumb separator="/" style="margin-bottom: 20px; text-align: left;">
+                <template v-for="(item, index) in matchedItems" :data-path="item.path" :to="item.path" >
+                  <el-breadcrumb-item :key="item.path" v-if="(matchedItems.length -1 ) != index" class="breadcrumb-link" :to="{ path: item.path }">{{item.meta.label}}</el-breadcrumb-item>
+                  <el-breadcrumb-item :key="item.path" v-else>{{item.meta.label}}</el-breadcrumb-item>
+                </template>
+              </el-breadcrumb>
             <router-view></router-view>
-            
           </el-main>
           <el-footer style="height:50px;">Footer</el-footer>
         </el-container>
       </el-container>
     </el-container>
-  
   </div>
 </template>
 
@@ -84,38 +75,37 @@
 }
 </style>
 
-
 <script>
-import Nav from "./common/Nav";
-import { loginService } from "~/service/loginService.js";
-import { userService } from "~/service/userService.js";
+// import Nav from "./common/Nav";
+// import { loginService } from "~/service/loginService.js";
+// import { userService } from "~/service/userService.js";
 
 export default {
-  name: "layout",
+  name: 'layout',
 
-  created() {
-    let _self = this;
-    _self.loadMatchedItems();
+  created () {
+    let _self = this
+    _self.loadMatchedItems()
   },
 
   computed: {
-    currentUser() {
-      let self = this;
-      if (!self.$store.getters.user.userName) {
-        userService
-          .getLoginUser()
-          .then(function(response) {
-            self.$store.dispatch({
-              type: "setUser",
-              user: response.data
-            });
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
-      }
-
-      return self.$store.getters.user;
+    currentUser () {
+      // let self = this
+      // if (!self.$store.getters.user.userName) {
+      //   userService
+      //     .getLoginUser()
+      //     .then(function(response) {
+      //       self.$store.dispatch({
+      //         type: "setUser",
+      //         user: response.data
+      //       });
+      //     })
+      //     .catch(function(error) {
+      //       console.log(error)
+      //     });
+      // }
+      // return self.$store.getters.user;
+      return {}
     }
   },
 
@@ -123,40 +113,39 @@ export default {
     return {
       isCollapse: false,
       matchedItems: []
-    };
+    }
   },
 
   watch: {
-    $route() {
-      this.loadMatchedItems();
+    $route () {
+      this.loadMatchedItems()
     }
   },
 
   methods: {
-    loadMatchedItems() {
-      let _self = this;
-      _self.matchedItems = _self.$route.matched;
+    loadMatchedItems () {
+      let _self = this
+      _self.matchedItems = _self.$route.matched
     },
 
-    collapse() {
-      this.isCollapse = !this.isCollapse;
-      return false;
+    collapse () {
+      this.isCollapse = !this.isCollapse
+      return false
     },
 
-    logout() {
-      let _self = this;
-      loginService
-        .logout()
-        .then(function(response) {
-          _self.$router.push({ path: "/login" });
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+    logout () {
+      // let _self = this
+      // loginService
+      //   .logout()
+      //   .then(function(response) {
+      //     _self.$router.push({ path: "/login" })
+      //   })
+      //   .catch(function(error) {
+      //     console.log(error)
+      //   })
     }
-  },
-  components: { Nav }
-};
+  }
+}
 </script>
 
 <style>
