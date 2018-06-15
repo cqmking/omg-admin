@@ -2,7 +2,7 @@
 
   <div class="login-box">
     <div class="login-logo">
-      <a href="../../index2.html"><b>Omg</b>Admin</a>
+      <a href="javascript:;"><b>Omg</b>Admin</a>
     </div>
 
     <div class="login-box-body">
