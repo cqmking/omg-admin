@@ -2,40 +2,38 @@
 
   <div class="login-box">
     <div class="login-logo">
-      <a href="javascript:;"><b>Omg</b>Admin</a>
+      <a href="javascript:;">
+        <b>Omg</b>Admin</a>
     </div>
 
     <div class="login-box-body">
       <p class="login-box-msg">密码登录</p>
-
       <el-form ref="form" :model="form" label-width="0px" size="small">
-          <el-form-item>
-            <el-input v-model="form.screenName" placeholder="账号" suffix-icon="fa fa-user"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-input v-model="form.password" placeholder="密码" type="password" suffix-icon="fa fa-key"></el-input>
-          </el-form-item>
+        <el-form-item>
+          <el-input v-model="form.screenName" placeholder="账号" suffix-icon="fa fa-user"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-input v-model="form.password" placeholder="密码" type="password" suffix-icon="fa fa-key"></el-input>
+        </el-form-item>
 
-          <el-form-item style="text-align:right;">
-            <el-button style="width:100%; border-radius:0;" type="primary" @click="onSubmit">登录</el-button>
-          </el-form-item>
-          <el-form-item style="text-align:right;">
-            <a href="#" style="margin-right: 10px;">忘记密码</a>
-            <a href="#">免费注册</a>
-          </el-form-item>
+        <el-form-item style="text-align:right;">
+          <el-button style="width:100%; border-radius:0;" type="primary" @click="onSubmit">登录</el-button>
+        </el-form-item>
+        <el-form-item style="text-align:right;">
+          <a href="#" style="margin-right: 10px;">忘记密码</a>
+          <a href="#">免费注册</a>
+        </el-form-item>
       </el-form>
     </div>
   </div>
-
 </template>
 
 <script>
-
 // import { Message } from 'element-ui'
 // import { loginService } from "~/service/loginService.js";
 
 export default {
-  data () {
+  data() {
     return {
       form: {
         screenName: '',
@@ -44,8 +42,8 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      // let self = this
+    onSubmit() {
+      let self = this
       // loginService
       //   .loginByScreenName({
       //     screenName: this.form.screenName,
@@ -68,11 +66,19 @@ export default {
       //   })
       //   .catch(function(error) {
       //     console.log(error);
-      //   });
+      //   })
+
+      self.$store.dispatch({
+        type: 'setUser',
+        user: { userName: '路飞', screenName: 'luffy', userId: 1001 }
+      })
+
       console.log('submit!')
+      self.$router.push({ path: '/workspace' })
     }
   }
 }
+
 </script>
 
 <style>
@@ -95,7 +101,7 @@ export default {
   padding: 7% 0 2% 0;
 }
 
-.login-logo  {
+.login-logo {
   font-size: 35px;
   text-align: center;
   margin-bottom: 25px;
@@ -122,5 +128,4 @@ export default {
 .login-box-body a {
   color: #9b9ea0;
 }
-
 </style>

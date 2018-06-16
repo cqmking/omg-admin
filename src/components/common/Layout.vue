@@ -5,9 +5,11 @@
       <el-header style="height:50px; line-height:50px;">
         <a href="../../index2.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>A</b>DM</span>
+          <span class="logo-mini">
+            <b>A</b>DM</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Omg</b>Admin</span>
+          <span class="logo-lg">
+            <b>Omg</b>Admin</span>
         </a>
         <nav class="navbar navbar-static-top">
           <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" @click="collapse">
@@ -38,25 +40,26 @@
             </div>
             <div class="pull-left info">
               <p>{{ currentUser.userInfo.userName }}</p>
-              <a href="#" style="font-size: 12px; color: #444;"><i class="fa fa-circle text-success"></i> 在线</a>
+              <a href="#" style="font-size: 12px; color: #444;">
+                <i class="fa fa-circle text-success"></i> 在线</a>
             </div>
           </div>
           <div class="nav">
             <div class="header">主菜单</div>
             <!-- 菜单 -->
-            <!-- <Nav :isCollapse="isCollapse"></Nav> -->
+            <Nav :isCollapse="isCollapse"></Nav>
           </div>
 
         </el-aside>
         <el-container>
           <el-main>
             <!-- 面包屑导航 -->
-              <el-breadcrumb separator="/" style="margin-bottom: 20px; text-align: left;">
-                <template v-for="(item, index) in matchedItems" :data-path="item.path" :to="item.path" >
-                  <el-breadcrumb-item :key="item.path" v-if="(matchedItems.length -1 ) != index" class="breadcrumb-link" :to="{ path: item.path }">{{item.meta.label}}</el-breadcrumb-item>
-                  <el-breadcrumb-item :key="item.path" v-else>{{item.meta.label}}</el-breadcrumb-item>
-                </template>
-              </el-breadcrumb>
+            <el-breadcrumb separator="/" style="margin-bottom: 20px; text-align: left;">
+              <template v-for="(item, index) in matchedItems" :data-path="item.path" :to="item.path">
+                <el-breadcrumb-item :key="item.path" v-if="(matchedItems.length -1 ) != index" class="breadcrumb-link" :to="{ path: item.path }">{{item.meta.label}}</el-breadcrumb-item>
+                <el-breadcrumb-item :key="item.path" v-else>{{item.meta.label}}</el-breadcrumb-item>
+              </template>
+            </el-breadcrumb>
             <router-view></router-view>
           </el-main>
           <el-footer style="height:50px;">Footer</el-footer>
@@ -76,36 +79,28 @@
 </style>
 
 <script>
-// import Nav from "./common/Nav";
+import Nav from '@/components/common/Nav'
 // import { loginService } from "~/service/loginService.js";
 // import { userService } from "~/service/userService.js";
 
 export default {
   name: 'layout',
 
-  created () {
+  created() {
     let _self = this
     _self.loadMatchedItems()
   },
 
   computed: {
-    currentUser () {
-      // let self = this
-      // if (!self.$store.getters.user.userName) {
-      //   userService
-      //     .getLoginUser()
-      //     .then(function(response) {
-      //       self.$store.dispatch({
-      //         type: "setUser",
-      //         user: response.data
-      //       });
-      //     })
-      //     .catch(function(error) {
-      //       console.log(error)
-      //     });
-      // }
-      // return self.$store.getters.user;
-      return {}
+    currentUser() {
+      let self = this
+      if (!self.$store.getters.user.userName) {
+        self.$store.dispatch({
+          type: 'setUser',
+          user: { userName: '路飞', screenName: 'luffy', userId: 1001 }
+        })
+      }
+      return self.$store.getters.user
     }
   },
 
@@ -117,23 +112,23 @@ export default {
   },
 
   watch: {
-    $route () {
+    $route() {
       this.loadMatchedItems()
     }
   },
 
   methods: {
-    loadMatchedItems () {
+    loadMatchedItems() {
       let _self = this
       _self.matchedItems = _self.$route.matched
     },
 
-    collapse () {
+    collapse() {
       this.isCollapse = !this.isCollapse
       return false
     },
 
-    logout () {
+    logout() {
       // let _self = this
       // loginService
       //   .logout()
@@ -144,7 +139,8 @@ export default {
       //     console.log(error)
       //   })
     }
-  }
+  },
+  components: { Nav }
 }
 </script>
 
@@ -386,7 +382,7 @@ body > .el-container {
   line-height: 50px;
   text-align: center;
   width: 230px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   padding: 0 15px;
   font-weight: 300;
   overflow: hidden;
