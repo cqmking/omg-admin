@@ -67,14 +67,6 @@ export default {
         .catch(function (error) {
           console.log(error)
         })
-
-      // self.$store.dispatch({
-      //   type: 'setUser',
-      //   user: { userName: '路飞', screenName: 'luffy', userId: 1001 }
-      // })
-
-      // console.log('submit!')
-      // self.$router.push({ path: '/workspace' })
     }
   }
 }

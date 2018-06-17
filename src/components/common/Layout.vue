@@ -3,7 +3,7 @@
   <div id="layout" :class="{'sidebar-collapse':isCollapse}" class="layout">
     <el-container>
       <el-header style="height:50px; line-height:50px;">
-        <a href="../../index2.html" class="logo">
+        <a href="javascript:;" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini">
             <b>A</b>DM</span>
@@ -80,8 +80,7 @@
 
 <script>
 import Nav from '@/components/common/Nav'
-// import { loginService } from "~/service/loginService.js";
-// import { userService } from "~/service/userService.js";
+import { loginService } from '@/service/loginService.js'
 
 export default {
   name: 'layout',
@@ -129,15 +128,15 @@ export default {
     },
 
     logout() {
-      // let _self = this
-      // loginService
-      //   .logout()
-      //   .then(function(response) {
-      //     _self.$router.push({ path: "/login" })
-      //   })
-      //   .catch(function(error) {
-      //     console.log(error)
-      //   })
+      let _self = this
+      loginService
+        .logout()
+        .then(function (response) {
+          _self.$router.push({ path: '/login' })
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     }
   },
   components: { Nav }
