@@ -8,75 +8,75 @@
 </template>
 
 <script>
-// import { commonService } from "~/service/commonService.js";
+import { commonService } from '@/service/commonService.js'
 
 export default {
-  data () {
+  data() {
     return {
       sysInfo: []
     }
   },
 
-  created () {
+  created() {
     this.initData()
   },
 
   methods: {
-    initData () {
-      // let self = this;
-      // commonService.getServerInfo().then(function(response) {
-      //   var object = response.data;
-      //   let arrayData = [];
-      //   arrayData.push({
-      //     key: "操作系统名称",
-      //     value: object.osName
-      //   });
-      //   arrayData.push({
-      //     key: "操作系统构架",
-      //     value: object.osArch
-      //   });
-      //   arrayData.push({
-      //     key: "操作系统版本",
-      //     value: object.osVersion
-      //   });
-      //   arrayData.push({
-      //     key: "java虚拟机",
-      //     value: object.jvmName
-      //   });
-      //   arrayData.push({
-      //     key: "java虚拟机版本",
-      //     value: object.jreVersion
-      //   });
-      //   arrayData.push({
-      //     key: "java运行环境",
-      //     value: object.jreName
-      //   });
-      //   arrayData.push({
-      //     key: "用户的主目录",
-      //     value: object.userHome
-      //   });
-      //   arrayData.push({
-      //     key: "当前工作目录",
-      //     value: object.userDir
-      //   });
-      //   arrayData.push({
-      //     key: "用户临时文件目录",
-      //     value: object.tempDir
-      //   });
-      //   arrayData.push({
-      //     key: "最大内存",
-      //     value: object.maxMemory + " MB"
-      //   });
-      //   arrayData.push({
-      //     key: "已用内存",
-      //     value: object.totalMemory + " MB"
-      //   });
-      //   arrayData.push({
-      //     key: "空闲内存",
-      //     value: object.freeMemory + " MB"
-      //   });
-      //   self.sysInfo = arrayData;
-      // });
+    initData() {
+      let self = this
+      commonService.getServerInfo().then(function (response) {
+        var object = response.data
+        let arrayData = []
+        arrayData.push({
+          key: '操作系统名称',
+          value: object.osName
+        })
+        arrayData.push({
+          key: '操作系统构架',
+          value: object.osArch
+        })
+        arrayData.push({
+          key: '操作系统版本',
+          value: object.osVersion
+        })
+        arrayData.push({
+          key: 'java虚拟机',
+          value: object.jvmName
+        })
+        arrayData.push({
+          key: 'java虚拟机版本',
+          value: object.jreVersion
+        })
+        arrayData.push({
+          key: 'java运行环境',
+          value: object.jreName
+        })
+        arrayData.push({
+          key: '用户的主目录',
+          value: object.userHome
+        })
+        arrayData.push({
+          key: '当前工作目录',
+          value: object.userDir
+        })
+        arrayData.push({
+          key: '用户临时文件目录',
+          value: object.tempDir
+        })
+        arrayData.push({
+          key: '最大内存',
+          value: object.maxMemory + ' MB'
+        })
+        arrayData.push({
+          key: '已用内存',
+          value: object.totalMemory + ' MB'
+        })
+        arrayData.push({
+          key: '空闲内存',
+          value: object.freeMemory + ' MB'
+        })
+        self.sysInfo = arrayData
+      })
     }
   }
 }

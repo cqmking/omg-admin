@@ -51,7 +51,7 @@ axios.interceptors.response.use(
       Message.error({
         message: msg
       })
-    } else if (error.response.status === '401') {
+    } else if (error.response.status === 401) {
       window.location.href = '/'
     } else if (error.response.data && error.response.data.message) {
       Message.error({
