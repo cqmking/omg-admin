@@ -1,10 +1,10 @@
 <template>
   <div class="sub-content common-list define-permission">
-    <div style="margin:10px 0">
-      <span style="color: rgb(96, 98, 102)">当前角色：</span>
+    <div style="margin:10px 0;">
+      <span style="color: rgb(96, 98, 102);">当前角色：</span>
       <b>{{role.name}}</b>
     </div>
-    <el-row :gutter="20" style="margin-top:10px">
+    <el-row :gutter="20" style="margin-top:10px;">
       <el-col :span="8">
         <!-- 树形菜单，资源 -->
         <el-tree :data="resourceTreeData" show-checkbox node-key="id" :default-expanded-keys="[2, 3]" :default-checked-keys="[5]"></el-tree>

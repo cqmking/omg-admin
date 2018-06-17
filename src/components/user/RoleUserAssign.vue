@@ -3,7 +3,7 @@
 
     <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
       <el-tab-pane label="已分配" name="first">
-        <el-table :data="assignedUsers.content" border style="width: 100%" size="medium" @selection-change="handleSelectionChange">
+        <el-table :data="assignedUsers.content" border style="width: 100%;" size="medium" @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="55" align="center"></el-table-column>
           <el-table-column prop="userId" label="用户ID" width="80" align="center"></el-table-column>
           <el-table-column prop="screenName" label="用户帐号" width="210" align="left"></el-table-column>
@@ -13,18 +13,18 @@
           <el-table-column prop="address" label="地址" align="left" min-width="150" show-overflow-tooltip></el-table-column>
           <el-table-column fixed="right" label="操作" width="150" align="center">
             <template slot-scope="scope">
-              <el-button title="从当前角色移除该用户" type="text" size="small" style="color:#f56c6c" @click="handleRemoveUserFromRole([scope.row])">移除</el-button>
+              <el-button title="从当前角色移除该用户" type="text" size="small" style="color:#f56c6c;" @click="handleRemoveUserFromRole([scope.row])">移除</el-button>
             </template>
           </el-table-column>
         </el-table>
 
-        <div class="block" style="text-align:right padding: 20px 0 10px 0">
+        <div class="block" style="text-align:right; padding: 20px 0 10px 0;">
           <el-row :gutter="20">
-            <el-col :span="4" style="text-align:left">
+            <el-col :span="4" style="text-align:left;">
               <el-button type="danger" v-show="selected.length > 0" icon="el-icon-remove-outline" size="medium" @click="handleRemoveUserFromRole(selected)">移除</el-button>
-              &ensp
+              <span>&nbsp;</span>
             </el-col>
-            <el-col :span="20">
+            <el-col :span="20" style="text-align:right;">
               <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentPageChange" :current-page="params.pageNo" :page-sizes="[5, 10, 20, 30, 40, 50]" :page-size="params.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="assignedUsers.totalElements">
               </el-pagination>
             </el-col>
@@ -33,7 +33,7 @@
 
       </el-tab-pane>
       <el-tab-pane label="未分配" name="second">
-        <el-table :data="unassignUsers.content" border style="width: 100%" size="medium" @selection-change="handleSelectionChange">
+        <el-table :data="unassignUsers.content" border style="width: 100%;" size="medium" @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="55" align="center"></el-table-column>
           <el-table-column prop="userId" label="用户ID" width="80" align="center"></el-table-column>
           <el-table-column prop="screenName" label="用户帐号" width="210" align="left"></el-table-column>
@@ -48,13 +48,13 @@
           </el-table-column>
         </el-table>
 
-        <div class="block" style="text-align:right padding: 20px 0 10px 0">
+        <div class="block" style="text-align:right; padding: 20px 0 10px 0;">
           <el-row :gutter="20">
-            <el-col :span="4" style="text-align:left">
+            <el-col :span="4" style="text-align:left;">
               <el-button type="primary" v-show="selected.length > 0" icon="el-icon-circle-plus-outline" size="medium" @click="handleAssignUserToRole(selected)">分配</el-button>
-              &ensp
+              <span>&nbsp;</span>
             </el-col>
-            <el-col :span="20">
+            <el-col :span="20" style="text-align:right;">
               <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentPageChange" :current-page="params.pageNo" :page-sizes="[5, 10, 20, 30, 40, 50]" :page-size="params.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="unassignUsers.totalElements">
               </el-pagination>
             </el-col>

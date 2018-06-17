@@ -1,24 +1,24 @@
 <template>
   <div class="sub-content">
-    <el-form class="role-form" ref="roleForm" :rules="rules" :model="roleForm" size="medium" label-width="80px" style="text-align:left margin-top: 20px">
+    <el-form class="role-form" ref="roleForm" :rules="rules" :model="roleForm" size="medium" label-width="80px" style="text-align:left; margin-top: 20px;">
       <el-row :gutter="20">
         <el-col :span="24">
           <el-form-item label="角色名称" prop="name" label-width="120px">
-            <el-input v-model="roleForm.name" style="max-width:300px"></el-input>
+            <el-input v-model="roleForm.name" style="max-width:300px;"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="20">
         <el-col :span="24">
           <el-form-item label="角色编码" prop="roleKey" label-width="120px">
-            <el-input v-model="roleForm.roleKey" style="max-width:300px"></el-input>
+            <el-input v-model="roleForm.roleKey" style="max-width:300px;"></el-input>
           </el-form-item>
         </el-col>
       </el-row>
       <el-row :gutter="20">
         <el-col :span="24">
           <el-form-item label="描述" prop="description" label-width="120px">
-            <el-input type="textarea" v-model="roleForm.description" style="max-width:750px" class="description-txt-area"></el-input>
+            <el-input type="textarea" v-model="roleForm.description" style="max-width:750px;" class="description-txt-area"></el-input>
           </el-form-item>
         </el-col>
       </el-row>

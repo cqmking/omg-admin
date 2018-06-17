@@ -1,6 +1,6 @@
 <template>
   <div class="sub-content">
-    <el-form class="user-form" ref="userForm" :rules="rules" :model="userForm" size="medium" label-width="80px" style="text-align:left margin-top: 20px">
+    <el-form class="user-form" ref="userForm" :rules="rules" :model="userForm" size="medium" label-width="80px" style="text-align:left; margin-top: 20px;">
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="用户账号" prop="screenName">
@@ -40,7 +40,7 @@
       <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="生日" prop="birthday">
-            <el-date-picker type="date" placeholder="选择日期" v-model="userForm.birthday" value-format="timestamp" style="width: 100%"></el-date-picker>
+            <el-date-picker type="date" placeholder="选择日期" v-model="userForm.birthday" value-format="timestamp" style="width: 100%;"></el-date-picker>
           </el-form-item>
         </el-col>
         <el-col :span="12">
