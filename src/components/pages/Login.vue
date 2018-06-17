@@ -29,8 +29,8 @@
 </template>
 
 <script>
-// import { Message } from 'element-ui'
-// import { loginService } from "~/service/loginService.js";
+import { Message } from 'element-ui'
+import { loginService } from '@/service/loginService.js'
 
 export default {
   data() {
@@ -44,37 +44,37 @@ export default {
   methods: {
     onSubmit() {
       let self = this
-      // loginService
-      //   .loginByScreenName({
-      //     screenName: this.form.screenName,
-      //     password: this.form.password
-      //   })
-      //   .then(function(response) {
-      //     if (response.status != 200) {
-      //       //登录认证失败
-      //       Message.error({
-      //         message: response.data.message
-      //       });
-      //     } else {
-      //       self.$store.dispatch({
-      //         type: "setUser",
-      //         user: response.data
-      //       });
-      //       //登录成功
-      //       self.$router.push({ path: "/workspace" });
-      //     }
-      //   })
-      //   .catch(function(error) {
-      //     console.log(error);
-      //   })
+      loginService
+        .loginByScreenName({
+          screenName: this.form.screenName,
+          password: this.form.password
+        })
+        .then(function (response) {
+          if (response.status !== 200) {
+            // 登录认证失败
+            Message.error({
+              message: response.data.message
+            })
+          } else {
+            self.$store.dispatch({
+              type: 'setUser',
+              user: response.data
+            })
+            // 登录成功
+            self.$router.push({ path: '/workspace' })
+          }
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
 
-      self.$store.dispatch({
-        type: 'setUser',
-        user: { userName: '路飞', screenName: 'luffy', userId: 1001 }
-      })
+      // self.$store.dispatch({
+      //   type: 'setUser',
+      //   user: { userName: '路飞', screenName: 'luffy', userId: 1001 }
+      // })
 
-      console.log('submit!')
-      self.$router.push({ path: '/workspace' })
+      // console.log('submit!')
+      // self.$router.push({ path: '/workspace' })
     }
   }
 }

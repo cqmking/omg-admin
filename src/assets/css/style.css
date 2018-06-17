@@ -82,6 +82,12 @@ td .el-button--small.is-round {
   background-color: #e9eef3;
 }
 
+.el-header {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
 .el-header .logo-mini {
   display: none;
 }
@@ -228,10 +234,7 @@ td .el-button--small.is-round {
   -webkit-transition: margin-left 0.3s ease-in-out;
   -o-transition: margin-left 0.3s ease-in-out;
   transition: margin-left 0.3s ease-in-out;
-}
-
-body > .el-container {
-  margin-bottom: 40px;
+  margin-top: 50px;
 }
 
 .el-container:nth-child(5) .el-aside,
