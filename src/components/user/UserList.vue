@@ -4,12 +4,12 @@
     <div class="btn-bar" style="text-align:left; margin:10px 0;">
 
       <el-row :gutter="20">
-        <el-col :span="8" style="min-width: 320px;">
+        <el-col :span="7" style="min-width: 320px;">
           <el-button type="primary" icon="el-icon-circle-plus-outline" size="medium" @click="handleCreateUser">新增</el-button>
           <el-button v-show="selected.length == 1" type="warning" icon="el-icon-edit" size="medium" @click="handUpdateUser(selected[0].userId)">修改</el-button>
           <el-button v-show="selected.length > 0" type="danger" icon="el-icon-delete" size="medium" @click="handleBatchDeleteUser(selected)">删除</el-button>
         </el-col>
-        <el-col :span="16" style="text-align:right;" class="search-group">
+        <el-col :span="17" style="text-align:right;" class="search-group">
           用户账号：
           <el-input size="medium" v-model="searchParams.screenName" clearable></el-input>
           用户名称：
