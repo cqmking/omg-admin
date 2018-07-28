@@ -7,7 +7,7 @@
     <el-row :gutter="20" style="margin-top:10px;">
       <el-col :span="8">
         <!-- 树形菜单，资源 -->
-        <el-tree :data="resourceTreeData" show-checkbox node-key="id" :default-expanded-keys="[2, 3]" :default-checked-keys="[5]"></el-tree>
+        <el-tree :data="resourceTreeData" node-key="id"></el-tree>
       </el-col>
       <el-col :span="16">
         <!-- 权限列表 -->
