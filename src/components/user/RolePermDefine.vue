@@ -18,7 +18,9 @@
 </template>
 
 <script>
+
 import { roleService } from '@/service/roleService.js'
+import { resourceService } from '@/service/resourceService.js'
 
 export default {
   data() {
@@ -47,6 +49,11 @@ export default {
     },
     loadResourceTree() {
       let _self = this
+
+      resourceService.getResourceTree().then(function (response) {
+        _self.resourceTreeData = response.data
+      })
+
       let node1 = {
         id: 1,
         label: '一级 2',
