@@ -5,13 +5,23 @@
       <b>{{role.name}}</b>
     </div>
     <el-row :gutter="20" style="margin-top:10px;">
-      <el-col :span="8">
+      <el-col :span="6">
         <!-- 树形菜单，资源 -->
-        <el-tree :data="resourceTreeData" node-key="id"></el-tree>
+        <el-tree :data="resourceTreeData" node-key="id" @node-click="nodeClickHandler"></el-tree>
       </el-col>
-      <el-col :span="16">
+      <el-col :span="18">
+        <div class="btn-bar" style="text-align:left; margin:10px 0;">
+          <el-row :gutter="20">
+            <el-col :span="7" style="min-width: 320px;">
+              <el-button type="primary" icon="el-icon-circle-plus-outline" size="medium" @click="updateResourcePermissions">更新</el-button>
+            </el-col>
+          </el-row>
+        </div>
         <!-- 权限列表 -->
-
+        <el-table :data="resourceActionList" border style="width: 100%;" size="medium" @selection-change="tableSelectionChangeHandler">
+          <el-table-column type="selection" width="55" align="center"></el-table-column>
+          <el-table-column prop="label" label="操作" align="left"></el-table-column>
+        </el-table>
       </el-col>
     </el-row>
   </div>
@@ -26,7 +36,8 @@ export default {
   data() {
     return {
       role: {},
-      resourceTreeData: []
+      resourceTreeData: [],
+      resourceActionList: []
     }
   },
   created() {
@@ -53,46 +64,24 @@ export default {
       resourceService.getResourceTree().then(function (response) {
         _self.resourceTreeData = response.data
       })
+    },
 
-      let node1 = {
-        id: 1,
-        label: '一级 2',
-        children: [
-          {
-            id: 3,
-            label: '二级 2-1',
-            children: [
-              {
-                id: 4,
-                label: '三级 3-1-1'
-              },
-              {
-                id: 5,
-                label: '三级 3-1-2',
-                disabled: true
-              }
-            ]
-          }
-        ]
+    nodeClickHandler(nodeData, node, nodeConponent) {
+      let _self = this
+      if (nodeData.type) {
+        let params = { resourceName: nodeData.resourceName, type: nodeData.type }
+        resourceService.getResourceActions(params).then(function (response) {
+          _self.resourceActionList = response.data
+        })
       }
-      let node2 = {
-        id: 2,
-        label: '二级 2-2',
-        disabled: true,
-        children: [
-          {
-            id: 6,
-            label: '三级 3-2-1'
-          },
-          {
-            id: 7,
-            label: '三级 3-2-2',
-            disabled: true
-          }
-        ]
-      }
-      _self.resourceTreeData.push(node1)
-      _self.resourceTreeData.push(node2)
+    },
+
+    tableSelectionChangeHandler() {
+      // let _self = this
+    },
+
+    updateResourcePermissions() {
+
     }
   }
 }
