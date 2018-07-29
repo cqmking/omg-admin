@@ -87,32 +87,47 @@ export default {
       _self.currentNodeData = nodeData
 
       if (_self.currentNodeData.type) {
-        let params = { resourceName: _self.currentNodeData.resourceName, type: _self.currentNodeData.type }
+        let params = {
+          resourceName: _self.currentNodeData.resourceName,
+          type: _self.currentNodeData.type,
+          roleId: _self.role.roleId,
+          primaryKey: 0
+        }
         resourceService.getResourceActions(params).then(function (response) {
           _self.resourceActionList = response.data
-        })
+          // this.$nextTick 数据渲染完成后执行回调
+          _self.$nextTick(() => {
+            for (let i = 0; i < _self.resourceActionList.length; i++) {
+              let row = _self.resourceActionList[i]
 
-        let scope = _self.currentNodeData.type === 'system' ? 1 : 2
-
-        let resPermissionParam = {
-          resourceName: _self.currentNodeData.resourceName,
-          primaryKey: 0,
-          scope: scope,
-          roleId: _self.role.roleId
-        }
-
-        resourcePermissionService.getResourcePermission(resPermissionParam).then(function (response) {
-          _self.resourcePermission = response.data
-          console.log(_self.resourcePermission)
-          for (let i = 0; i < _self.resourceActionList.length; i++) {
-            let row = _self.resourceActionList[i]
-
-            if ((row.value & _self.resourcePermission.actionIds) !== 0) {
-              _self.$refs.resourceActionTable.toggleRowSelection(row)
-              // console.log(row.value + ' ||| ' + _self.resourcePermission.actionIds)
+              if (row.isChecked) {
+                _self.$refs.resourceActionTable.toggleRowSelection(row)
+              }
             }
-          }
+          })
         })
+
+        // let scope = _self.currentNodeData.type === 'system' ? 1 : 2
+
+        // let resPermissionParam = {
+        //   resourceName: _self.currentNodeData.resourceName,
+        //   primaryKey: 0,
+        //   scope: scope,
+        //   roleId: _self.role.roleId
+        // }
+
+        // resourcePermissionService.getResourcePermission(resPermissionParam).then(function (response) {
+        //   _self.resourcePermission = response.data
+        //   console.log(_self.resourcePermission)
+        //   for (let i = 0; i < _self.resourceActionList.length; i++) {
+        //     let row = _self.resourceActionList[i]
+
+        //     if ((row.value & _self.resourcePermission.actionIds) !== 0) {
+        //       _self.$refs.resourceActionTable.toggleRowSelection(row)
+        //       // console.log(row.value + ' ||| ' + _self.resourcePermission.actionIds)
+        //     }
+        //   }
+        // })
       }
     },
 
